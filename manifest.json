@@ -1,0 +1,27 @@
+{
+  "name" : "xbmc playlist adder",
+  "version" : "1.0",
+  "description" : "The extension to add urls to xbmc",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "playlist.png",
+    "default_popup": "window.html"
+  },
+  "icons": {
+    "16": "playlist.png",
+    "128": "playlist128.png"
+  },
+  "content_security_policy": "script-src 'self'; object-src 'self';",
+  "content_scripts": [{
+    "matches" : [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "js" : ["js/jquery.js", "js/main.js"]
+  }, {
+      "matches" : [
+        "http://ex.ua/*"
+      ],
+      "js" : ["js/ex.js"]
+    }]
+}
