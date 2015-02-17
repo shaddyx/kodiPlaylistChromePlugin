@@ -12,6 +12,10 @@
     "128": "playlist128.png"
   },
   "content_security_policy": "script-src 'self'; object-src 'self';",
+  "permissions": [
+    "contextMenus",
+    "tabs"
+  ],
   "content_scripts": [{
     "matches" : [
       "http://*/*",
@@ -20,7 +24,8 @@
     "js" : ["js/jquery.js", "js/main.js"]
   }, {
       "matches" : [
-        "http://ex.ua/*"
+        "http://ex.ua/*",
+        "http://www.ex.ua/*"
       ],
       "js" : ["js/ex.js"]
     }]
