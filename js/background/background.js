@@ -4,7 +4,9 @@
 window.addEventListener("load", function() {
     window.setInterval( function() {
         console.log("Hello world");
-        chrome.runtime.sendMessage({test:"test"});
+        BgUtils.sendMessageToContentScript({test:"test"}, function(responce){
+            console.log("resp:", responce);
+        });
         console.log("message sent");
     }, 1000);
 });

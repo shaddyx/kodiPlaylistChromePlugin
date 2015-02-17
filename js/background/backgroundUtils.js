@@ -1,9 +1,8 @@
-/**
- * Created by shaddy on 17.02.15.
- */
-/*var invokeFunction = function(){
-    for (var k in arguments){
-
+var BgUtils = {
+    sendMessageToContentScript: function(message, callBack){
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+            chrome.tabs.sendMessage(tabs[0].id, message, callBack);
+        });
     }
 };
-chrome.tabs.sendMessage();*/
+
