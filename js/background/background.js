@@ -4,7 +4,7 @@
 window.addEventListener("load", function() {
     window.setInterval( function() {
         console.log("Hello world");
-        BgUtils.sendMessageToContentScript({test:"test"}, function(responce){
+        BackgroundUtils.sendMessageToContentScript({test:"test"}, function(responce){
             console.log("resp:", responce);
         });
         console.log("message sent");

@@ -21,12 +21,12 @@
       "http://*/*",
       "https://*/*"
     ],
-    "js" : ["js/jquery.js", "js/main.js"]
+    "js" : ["js/shared/jquery.js", "js/contentScript/contentScriptUtils.js", "js/contentScript/main.js"]
   }, {
       "matches" : [
         "http://ex.ua/*",
         "http://www.ex.ua/*"
       ],
-      "js" : ["js/ex.js"]
+      "js" : ["js/contentScript/plugins/ex.js"]
     }]
 }
