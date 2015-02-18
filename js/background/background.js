@@ -1,9 +1,6 @@
 /**
  * Created by shaddy on 16.02.15.
  */
-window.addEventListener("load", function() {
-
-});
 
 var urls = [];
 
@@ -11,8 +8,9 @@ var renderUrls = function(){
    var table = document.getElementById("contentList");
    for (var k in urls){
       var caption = urls[k].caption;
+      console.log("adding row:", urls[k]);
       var url = urls[k].url;
-      var row = table.insertRow(k + 1);
+      var row = table.insertRow(table.rows.length);
       row.insertCell(0).innerHTML = caption;
       row.insertCell(1).innerHTML = '<button type="button" class="btn btn-default">add</button>'
    }
@@ -24,11 +22,16 @@ var clearList = function(){
    table.innerHTML = "<tr><th>name</th><th>add</th></tr>";
 };
 
-BackgroundUtils.addMessageListener("clearList", function(){
+BackgroundUtils.addMessageListener("addPlayerItems", function(urlObjects){
+   console.log("incoming objects", urlObjects);
    clearList();
+   urls = urlObjects;
    renderUrls();
 });
-BackgroundUtils.addMessageListener("addPlayerItem", function(urlObjects){
-   urls.push(urlObject);
-   renderUrls();
+
+window.addEventListener("load", function() {
+   console.log("sending setItemList", new Date())
+   clearList();
+   BackgroundUtils.sendMessageToContentScript("getItemList");
 });
+

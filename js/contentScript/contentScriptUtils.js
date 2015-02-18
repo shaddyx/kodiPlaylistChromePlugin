@@ -1,6 +1,12 @@
 /**
  * Created by shaddy on 18.02.15.
  */
+
+var PlayerItem = function(caption, url){
+    this.caption = caption;
+    this.url = url;
+};
+
 ContentScriptUtils = {
     __sendMessageToBackground:function(message, callBack){
         chrome.runtime.sendMessage(message, function(response) {
@@ -36,6 +42,7 @@ ContentScriptUtils = {
         }
     },
     __messageProcessor:function(message, sender, sendResponse) {
+        console.log("received message", message);
         if (typeof message === "object" && message.msgType === "message"){
             var type = message.type;
             if (this.__listeners[type]){
@@ -45,8 +52,8 @@ ContentScriptUtils = {
             }
         }
     },
-    addPlayerItem:function(caption, url){
-        this.sendMessageToBackground("addPlayerItem", {caption:caption, url:url});
+    addPlayerItems:function(items){
+        this.sendMessageToBackground("addPlayerItems", items);
     }
 };
 chrome.runtime.onMessage.addListener(function(a,b){

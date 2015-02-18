@@ -3,14 +3,15 @@
  */
 console.log("ex loaded");
 
-chrome.runtime.onMessage.addListener(function(message, sender, callBack){
-    console.log("Message", message);
-    return {a:"b"};
+ContentScriptUtils.addMessageListener("getItemList", function(){
+    console.log("received getItemList message");
+    var elements = document.querySelectorAll("a[href^='/get/'][title]");
+    var playerItems= [];
+    for (var k in elements){
+        if (elements[k].tagName === "A"){
+            playerItems.push(new PlayerItem(elements[k].getAttribute("title"), elements[k].getAttribute("href")));
+        }
+    }
+    debugger;
+    ContentScriptUtils.addPlayerItems(playerItems);
 });
-
-console.log("listener added");
-
-setInterval(function(){
-    ContentScriptUtils.sendMessageToBackground("testMessage", {param:1});
-    ContentScriptUtils.addPlayerItem("TestMovie", "http://ya.ru");
-}, 500);

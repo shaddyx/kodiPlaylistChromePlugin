@@ -1,10 +1,24 @@
 
 var BackgroundUtils = {
-    sendMessageToContentScript: function(message, callBack){
+    sendMessageToContentScript: function(type){
+        var callBack = function(){
+
+        };
+        var args = [];
+        for (var i = 1; i < arguments.length; i++) {
+            args.push(arguments[i]);
+        }
+        var obj = {
+            msgType:"message",
+            type:type,
+            params:args
+        };
+
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-            chrome.tabs.sendMessage(tabs[0].id, message, callBack);
+            chrome.tabs.sendMessage(tabs[0].id, obj, callBack);
         });
     },
+
     __listeners:{},
     addMessageListener:function(type, func, obj){
         this.__listeners[type] = this.__listeners[type] || [];
