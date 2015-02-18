@@ -9,3 +9,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, callBack){
 });
 
 console.log("listener added");
+
+setInterval(function(){
+    ContentScriptUtils.sendMessageToBackground("testMessage", {param:1});
+}, 500);

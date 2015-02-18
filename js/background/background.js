@@ -2,11 +2,10 @@
  * Created by shaddy on 16.02.15.
  */
 window.addEventListener("load", function() {
-    window.setInterval( function() {
-        console.log("Hello world");
-        BackgroundUtils.sendMessageToContentScript({test:"test"}, function(responce){
-            console.log("resp:", responce);
-        });
-        console.log("message sent");
-    }, 1000);
+
+});
+
+
+BackgroundUtils.addMessageListener("testMessage", function(a, b){
+   console.log("testMessage called with params", a, b);
 });
