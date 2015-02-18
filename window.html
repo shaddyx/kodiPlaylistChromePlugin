@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=500, initial-scale=1">
     <!-- Latest compiled and minified JavaScript -->
+    <script type="application/javascript" src="js/shared/jquery.js"></script>
+    <script type="application/javascript" src="js/shared/jquery.cookie.js"></script>
+    <script type="application/javascript" src="js/shared/bootstrap.js"></script>
     <script type="application/javascript" src="js/background/backgroundUtils.js"></script>
+    <script type="application/javascript" src="js/background/settings.js"></script>
     <script type="application/javascript" src="js/background/background.js"></script>
     <script src="js/shared/jquery.js"></script>
     <script src="js/shared/bootstrap.js"></script>
@@ -19,7 +23,7 @@
     <div class="row">
         <div class="col-xs-2"><button type="button" class="btn btn-default">Add all</button></div>
         <div class="col-xs-8">&nbsp;</div>
-        <div class="col-xs-2"><button type="button" class="btn btn-default">Settings</button></div>
+        <div class="col-xs-2"><button type="button" id="settingsButton" class="btn btn-default">Settings</button></div>
     </div>
     <div class="row">
         <div class="col-xs-12">
@@ -33,5 +37,6 @@
         <label for="rpcUrl">RPC url</label>
         <input type="text" class="form-control" id="rpcUrl" placeholder="Enter rpc url">
     </div>
+    <button type="button" class="btn btn-default" id="saveSettingsButton">Save</button>
 </div>
 </html>
