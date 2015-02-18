@@ -12,6 +12,5 @@ ContentScriptUtils.addMessageListener("getItemList", function(){
             playerItems.push(new PlayerItem(elements[k].getAttribute("title"), elements[k].getAttribute("href")));
         }
     }
-    debugger;
     ContentScriptUtils.addPlayerItems(playerItems);
 });

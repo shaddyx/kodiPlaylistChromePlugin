@@ -34,4 +34,3 @@ window.addEventListener("load", function() {
    clearList();
    BackgroundUtils.sendMessageToContentScript("getItemList");
 });
-
