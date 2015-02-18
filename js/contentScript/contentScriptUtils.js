@@ -44,6 +44,9 @@ ContentScriptUtils = {
                 }
             }
         }
+    },
+    addPlayerItem:function(caption, url){
+        this.sendMessageToBackground("addPlayerItem", {caption:caption, url:url});
     }
 };
 chrome.runtime.onMessage.addListener(function(a,b){

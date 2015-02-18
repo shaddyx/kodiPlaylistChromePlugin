@@ -12,4 +12,5 @@ console.log("listener added");
 
 setInterval(function(){
     ContentScriptUtils.sendMessageToBackground("testMessage", {param:1});
+    ContentScriptUtils.addPlayerItem("TestMovie", "http://ya.ru");
 }, 500);
