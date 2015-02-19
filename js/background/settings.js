@@ -1,7 +1,7 @@
 /**
  * Created by shaddy on 18.02.15.
  */
-var settings = $.cookie("settings") || {
+var settings = JSON.parse($.cookie("settings") || false) || {
         rpcUrl:""
     };
 $(function(){
@@ -14,6 +14,8 @@ $(function(){
         settings = {
             rpcUrl: $("#rpcUrl").val()
         }
-        $.cookie("settings", settings);
+        $.cookie("settings", JSON.stringify(settings));
+        $("#settings").hide();
+        $("#main").show();
     });
 });
