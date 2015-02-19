@@ -22,6 +22,18 @@ var clearList = function(){
    table.innerHTML = "<tr><th>name</th><th>add</th></tr>";
 };
 
+var makeRequest = function(url, data){
+   $.ajax({
+      url:url,
+      method:"POST",
+      data:data,
+      dataType:"json",
+      success:function(data){
+         console.log(data);
+      }
+   })
+};
+
 BackgroundUtils.addMessageListener("addPlayerItems", function(urlObjects){
    console.log("incoming objects", urlObjects);
    clearList();
@@ -33,4 +45,11 @@ window.addEventListener("load", function() {
    console.log("sending setItemList", new Date())
    clearList();
    BackgroundUtils.sendMessageToContentScript("getItemList");
+});
+
+$(function(){
+   $("#addAllButton").click(function(){
+      console.log("posting urls", urls);
+      makeRequest(settings.rpcUrl, {urls:urls});
+   });
 });

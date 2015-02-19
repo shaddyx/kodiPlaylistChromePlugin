@@ -14,7 +14,8 @@
   "content_security_policy": "script-src 'self'; object-src 'self';",
   "permissions": [
     "contextMenus",
-    "tabs"
+    "tabs",
+    "http://*/*"
   ],
   "content_scripts": [{
     "matches" : [
