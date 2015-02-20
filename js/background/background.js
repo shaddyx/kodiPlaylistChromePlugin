@@ -22,17 +22,6 @@ var clearList = function(){
    table.innerHTML = "<tr><th>name</th><th>add</th></tr>";
 };
 
-var makeRequest = function(url, data){
-   $.ajax({
-      url:url,
-      method:"POST",
-      data:data,
-      dataType:"json",
-      success:function(data){
-         console.log(data);
-      }
-   })
-};
 
 BackgroundUtils.addMessageListener("addPlayerItems", function(urlObjects){
    console.log("incoming objects", urlObjects);

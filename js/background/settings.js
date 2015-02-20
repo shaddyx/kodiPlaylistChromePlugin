@@ -4,6 +4,7 @@
 var settings = JSON.parse($.cookie("settings") || false) || {
         rpcUrl:""
     };
+    rpc.setUrl(settings.rpcUrl);
 $(function(){
     $("#settingsButton").click(function(){
         $("#main").hide();
@@ -13,7 +14,8 @@ $(function(){
     $("#saveSettingsButton").click(function() {
         settings = {
             rpcUrl: $("#rpcUrl").val()
-        }
+        };
+        rpc.setUrl(settings.rpcUrl);
         $.cookie("settings", JSON.stringify(settings));
         $("#settings").hide();
         $("#main").show();
