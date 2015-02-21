@@ -12,7 +12,7 @@ var renderUrls = function(){
       var url = urls[k].url;
       var row = table.insertRow(table.rows.length);
       row.insertCell(0).innerHTML = caption;
-      row.insertCell(1).innerHTML = '<button type="button" class="btn btn-default">add</button>'
+      row.insertCell(1).innerHTML = '<button type="button" class="btn btn-default" onclick="addMovie(' + k + ')" >add</button>';
    }
 };
 
@@ -34,6 +34,10 @@ window.addEventListener("load", function() {
    clearList();
    BackgroundUtils.sendMessageToContentScript("getItemList");
 });
+
+var addMovie = function(index){
+   rpc.playListAdd(urls[index]);
+};
 
 $(function(){
    $("#addAllButton").click(function(){

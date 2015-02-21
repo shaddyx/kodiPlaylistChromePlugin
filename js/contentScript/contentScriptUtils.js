@@ -30,8 +30,6 @@ PlayerItem.prototype.setUseUrlFromLocation = function(useUrlFromLocation){
     this.useUrlFromLocation = !!useUrlFromLocation;
 };
 
-
-
 PlayerItem.prototype.getForJson = function(){
     var obj = {};
     for (var k in this){
