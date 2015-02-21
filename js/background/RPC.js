@@ -27,20 +27,29 @@ RPC.prototype.call = function(method, params, options){
     };
     this.makeRequest({
         url:this.url,
-        data:{jsonrpc:jsonRpc},
+        data:{jsonrpc:JSON.stringify(jsonRpc)},
         success:options.success,
         error:options.error
     });
 };
+/**
+ * sets url of rpc server
+ * @param url
+ */
 RPC.prototype.setUrl = function(url){
     this.url = url;
 };
 
-RPC.prototype.playListAdd = function(file){
-    this.call("Playlist.add", {
-        playlistid:1,
-        item:{file:file}
-    });
+RPC.prototype.playListAdd = function(files) {
+    if (files instanceof Array) {
+        this.call("Playlist.add", {
+            files: files
+        });
+    } else {
+        this.call("Playlist.add", {
+            file: file
+        });
+    }
 };
 
 

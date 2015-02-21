@@ -1,11 +1,11 @@
 /**
  * Created by shaddy on 18.02.15.
  */
-var settings = JSON.parse($.cookie("settings") || false) || {
-        rpcUrl:""
-    };
-    rpc.setUrl(settings.rpcUrl);
 $(function(){
+    var settings = JSON.parse($.cookie("settings") || false) || {
+            rpcUrl:""
+        };
+    rpc.setUrl(settings.rpcUrl);
     $("#settingsButton").click(function(){
         $("#main").hide();
         $("#settings").show();

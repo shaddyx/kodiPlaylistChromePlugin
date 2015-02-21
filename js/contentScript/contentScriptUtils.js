@@ -1,10 +1,45 @@
 /**
  * Created by shaddy on 18.02.15.
  */
-
+/**
+ *
+ * @param caption
+ * @param url
+ * @constructor
+ */
 var PlayerItem = function(caption, url){
     this.caption = caption;
     this.url = url;
+    this.redirrect = false;
+    this.useCaptionFromLocation = false;
+    this.useUrlFromLocation = false;
+};
+
+PlayerItem.prototype.setRedirrect = function(redirrect){
+    this.redirrect = !!redirrect;
+};
+
+/**
+ * note that if useCaptionFromLocation == true - server will add the caption from header location file name
+ */
+PlayerItem.prototype.setUseCaptionFromLocation = function(useCaptionFromLocation){
+    this.useCaptionFromLocation = !!useCaptionFromLocation;
+};
+
+PlayerItem.prototype.setUseUrlFromLocation = function(useUrlFromLocation){
+    this.useUrlFromLocation = !!useUrlFromLocation;
+};
+
+
+
+PlayerItem.prototype.getForJson = function(){
+    var obj = {};
+    for (var k in this){
+        if (k[0] != '_' && typeof this[k] != 'function'){
+            obj[k] = this[k];
+        }
+    }
+    return obj;
 };
 
 ContentScriptUtils = {

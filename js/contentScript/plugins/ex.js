@@ -9,7 +9,10 @@ ContentScriptUtils.addMessageListener("getItemList", function(){
     var playerItems= [];
     for (var k in elements){
         if (elements[k].tagName === "A"){
-            playerItems.push(new PlayerItem(elements[k].getAttribute("title"), elements[k].getAttribute("href")));
+            var item = new PlayerItem(elements[k].getAttribute("title"), "http://ex.ua" + elements[k].getAttribute("href"));
+            //item.setUseCaptionFromLocation(true);
+            item.setUseUrlFromLocation(true);
+            playerItems.push(item);
         }
     }
     ContentScriptUtils.addPlayerItems(playerItems);

@@ -22,7 +22,6 @@ var clearList = function(){
    table.innerHTML = "<tr><th>name</th><th>add</th></tr>";
 };
 
-
 BackgroundUtils.addMessageListener("addPlayerItems", function(urlObjects){
    console.log("incoming objects", urlObjects);
    clearList();
@@ -39,6 +38,6 @@ window.addEventListener("load", function() {
 $(function(){
    $("#addAllButton").click(function(){
       console.log("posting urls", urls);
-      makeRequest(settings.rpcUrl, {urls:urls});
+      rpc.playListAdd(urls);
    });
 });
