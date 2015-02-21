@@ -47,7 +47,7 @@ RPC.prototype.playListAdd = function(files) {
         });
     } else {
         this.call("Playlist.add", {
-            file: file
+            files: [file]
         });
     }
 };
