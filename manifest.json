@@ -35,5 +35,11 @@
       "http://www.fs.to/*"
     ],
     "js" : ["js/contentScript/plugins/fs.js"]
+    },{
+    "matches" : [
+      "https://vk.com/*",
+      "https://www.vk.com/*"
+    ],
+    "js" : ["js/contentScript/plugins/vk.js"]
   }]
 }
