@@ -21,7 +21,7 @@
                         array_push($files, $v);
                     }
                 }
-                RPC::rpcAddFiles($files);
+                print RPC::rpcAddFiles($files);
                 break;
             default:
                 print RPC::passthrough($rpcCall);
