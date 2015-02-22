@@ -29,5 +29,11 @@
         "http://www.ex.ua/*"
       ],
       "js" : ["js/contentScript/plugins/ex.js"]
-    }]
+    },{
+    "matches" : [
+      "http://fs.to/*",
+      "http://www.fs.to/*"
+    ],
+    "js" : ["js/contentScript/plugins/fs.js"]
+  }]
 }

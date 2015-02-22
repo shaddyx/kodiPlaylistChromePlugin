@@ -23,5 +23,7 @@
                 }
                 RPC::rpcAddFiles($files);
                 break;
+            default:
+                print RPC::passthrough($rpcCall);
         }
     }

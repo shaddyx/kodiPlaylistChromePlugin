@@ -13,7 +13,7 @@ class RPC {
     public static function request($req) {
         file_put_contents("req.txt", $req. "\n", FILE_APPEND);
         if (Config::$enableRequest){
-            file_get_contents($req);
+            return file_get_contents($req);
         } else {
             print $req;
         }
@@ -26,6 +26,10 @@ class RPC {
         $request["params"]["window"] = "videoplaylist";
         self::request("http://" . Config::$rpcHost . "/jsonrpc?request=" . json_encode($request));
     }
+    public static function passthrough($query){
+       return self::request("http://" . Config::$rpcHost . "/jsonrpc?request=" . json_encode($query));
+    }
+
 
     /**
      * @param $file

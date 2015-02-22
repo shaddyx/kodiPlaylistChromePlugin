@@ -12,8 +12,12 @@ var renderUrls = function(){
       var url = urls[k].url;
       var row = table.insertRow(table.rows.length);
       row.insertCell(0).innerHTML = caption;
-      row.insertCell(1).innerHTML = '<button type="button" class="btn btn-default" onclick="addMovie(' + k + ')" >add</button>';
+      row.insertCell(1).innerHTML = '<button type="button" class="btn btn-default" movieId=' + k + ' >add</button>';
    }
+   $("button[movieId]").unbind("click");
+   $("button[movieId]").bind("click",function(){
+      addMovie($(this).attr("movieId"));
+   });
 };
 
 var clearList = function(){
@@ -40,8 +44,16 @@ var addMovie = function(index){
 };
 
 $(function(){
+
    $("#addAllButton").click(function(){
       console.log("posting urls", urls);
       rpc.playListAdd(urls);
+   });
+   $("#showPlayListButton").click(function(){
+      rpc.playListShow();
+   });
+
+   $("#clearPlayListButton").click(function(){
+      rpc.playListClear();
    });
 });

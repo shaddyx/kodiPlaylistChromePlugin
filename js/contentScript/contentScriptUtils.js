@@ -40,7 +40,19 @@ PlayerItem.prototype.getForJson = function(){
     return obj;
 };
 
+String.prototype.startsWith = function(prefix) {
+    return this.indexOf(prefix) === 0;
+}
+
+String.prototype.endsWith = function(suffix) {
+    return this.match(suffix+"$") == suffix;
+};
+
 ContentScriptUtils = {
+    isHidden:function (el) {
+        var style = window.getComputedStyle(el);
+        return (style.display === 'none')
+    },
     __sendMessageToBackground:function(message, callBack){
         chrome.runtime.sendMessage(message, function(response) {
             //callBack(response);

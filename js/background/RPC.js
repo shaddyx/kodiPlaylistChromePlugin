@@ -13,7 +13,7 @@ RPC.prototype.makeRequest = function(params){
         dataType:"json",
         success:params.success,
         error:params.error
-    })
+    });
 };
 
 
@@ -51,6 +51,15 @@ RPC.prototype.playListAdd = function(files) {
         });
     }
 };
+
+RPC.prototype.playListShow = function() {
+    this.call("GUI.ActivateWindow", {window:"videoplaylist"});
+};
+RPC.prototype.playListClear = function() {
+    console.log("clearing playlist");
+    this.call("Playlist.Clear", {playlistid:1});
+};
+
 
 
 var rpc = new RPC();
