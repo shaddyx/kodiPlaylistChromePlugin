@@ -6,13 +6,20 @@ var RPC = function(url){
 };
 
 RPC.prototype.makeRequest = function(params){
+    $("button").attr("disabled", "disabled");
     $.ajax({
         url:params.url,
         method:"POST",
         data:params.data,
         dataType:"json",
-        success:params.success,
-        error:params.error
+        success:function(result){
+            $("button").removeAttr("disabled");
+            params.success(result);
+        },
+        error:function(err){
+            $("button").removeAttr("disabled");
+            params.error(err);
+        }
     });
 };
 

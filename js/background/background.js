@@ -34,7 +34,7 @@ BackgroundUtils.addMessageListener("addPlayerItems", function(urlObjects){
 });
 
 window.addEventListener("load", function() {
-   console.log("sending setItemList", new Date())
+   console.log("sending setItemList", new Date());
    clearList();
    BackgroundUtils.sendMessageToContentScript("getItemList");
 });
@@ -44,7 +44,6 @@ var addMovie = function(index){
 };
 
 $(function(){
-
    $("#addAllButton").click(function(){
       console.log("posting urls", urls);
       rpc.playListAdd(urls);
