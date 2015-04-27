@@ -5,6 +5,7 @@ console.log("ex loaded");
 
 ContentScriptUtils.addMessageListener("getItemList", function(){
     var player = document.querySelector("#video_player");
+    debugger;
     console.log("player is:", player);
     if (player){
         var re = /url([0-9]{1,4})=(.*?)&/g;

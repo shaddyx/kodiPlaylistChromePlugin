@@ -1,6 +1,6 @@
 {
   "name" : "xbmc playlist adder",
-  "version" : "1.0.2",
+  "version" : "1.0.4",
   "description" : "The extension to add urls to xbmc",
   "manifest_version": 2,
   "browser_action": {

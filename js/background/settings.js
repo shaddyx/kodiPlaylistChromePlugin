@@ -2,7 +2,7 @@
  * Created by shaddy on 18.02.15.
  */
 $(function(){
-    var settings = JSON.parse($.cookie("settings") || false) || {
+    var settings = JSON.parse($.cookie("settings") || localStorage.rpcUrl || false) || {
             rpcUrl:""
         };
     rpc.setUrl(settings.rpcUrl);
@@ -16,7 +16,9 @@ $(function(){
             rpcUrl: $("#rpcUrl").val()
         };
         rpc.setUrl(settings.rpcUrl);
-        $.cookie("settings", JSON.stringify(settings));
+        var settingsJson = JSON.stringify(settings);
+        $.cookie("settings", settingsJson);
+        localStorage.rpcUrl = settingsJson;
         $("#settings").hide();
         $("#main").show();
     });

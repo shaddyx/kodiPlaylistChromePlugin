@@ -48,7 +48,8 @@ class RPC {
         if ($file["redirrect"]) {
             $finalUrl = "http://" . Config::$proxyUrl . "/mv/" . urlencode(str_replace("/", "ẹ", $file["url"])) . "/" . $file["caption"];
         } else {
-            $finalUrl = urlencode($file["url"]);
+            //$finalUrl = urlencode($file["url"]);
+            $finalUrl = $file["url"];
         }
 
         $request["jsonrpc"] = "2.0";
