@@ -1,9 +1,9 @@
-body{
-    width: 700px;
-    max-height: 700px;
-    overflow: auto;
-}
+body {
+  width: 700px;
+  max-height: 700px;
+  overflow: auto; }
 
-#settings{
-    display:none;
-}
+#settings {
+  display: none; }
+
+/*# sourceMappingURL=main.css.map */

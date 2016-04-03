@@ -1,43 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <meta name="viewport" content="width=500, initial-scale=1">
-    <!-- Latest compiled and minified JavaScript -->
-    <script type="application/javascript" src="js/shared/jquery.js"></script>
-    <script type="application/javascript" src="js/shared/jquery.cookie.js"></script>
-    <script type="application/javascript" src="js/shared/bootstrap.js"></script>
-    <script type="application/javascript" src="js/background/backgroundUtils.js"></script>
-    <script type="application/javascript" src="js/background/RPC.js"></script>
-    <script type="application/javascript" src="js/background/settings.js"></script>
-    <script type="application/javascript" src="js/background/background.js"></script>
-
-</head>
-<br>
-<div class="container-fluid" id="main">
-    <div class="row">
-        <div class="col-xs-3"><button type="button" id="addAllButton" class="btn btn-default">Add all</button></div>
-        <div class="col-xs-3"><button type="button" id="showPlayListButton" class="btn btn-default">Show playlist</button></div>
-        <div class="col-xs-3"><button type="button" id="clearPlayListButton" class="btn btn-default">Clear playlist</button></div>
-        <div class="col-xs-3"><button type="button" id="settingsButton" class="btn btn-default">Settings</button></div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-xs-12">
-            <table class="table table-bordered" id="contentList">
-            </table>
-        </div>
-    </div>
-</div>
-<div class="container" id="settings">
-    <div class="form-group">
-        <label for="rpcUrl">RPC url</label>
-        <input type="text" class="form-control" id="rpcUrl" placeholder="Enter rpc url">
-    </div>
-    <button type="button" class="btn btn-default" id="saveSettingsButton">Save</button>
-</div>
+    <!--link(rel='stylesheet', href='css/bootstrap.min.css')
+    -->
+    <link rel="stylesheet" href="js/shared/bower_components/angular-material/angular-material.css">
+    <!-- Latest compiled and minified JavaScript-->
+    <script type="application/javascript" src="js/shared/bower_components/jquery/dist/jquery.js"></script>
+    <script type="application/javascript" src="js/shared/bower_components/jquery.cookie/jquery.cookie.js"></script>
+    <script type="application/javascript" src="js/shared/bower_components/angular/angular.js"></script>
+    <script type="application/javascript" src="js/shared/bower_components/angular-aria/angular-aria.js"></script>
+    <script type="application/javascript" src="js/shared/bower_components/angular-messages/angular-messages.js"></script>
+    <script type="application/javascript" src="js/shared/bower_components/angular-material/angular-material.js"></script>
+    <script type="application/javascript" src="js/shared/bower_components/angular-animate/angular-animate.js"></script>
+    <!--  application-->
+    <script type="application/javascript" src="js/background/MainApp.js"></script>
+    <!--
+    script(type='application/javascript', src='js/background/backgroundUtils.js')
+    script(type='application/javascript', src='js/background/RPC.js')
+    script(type='application/javascript', src='js/background/settings.js')
+    script(type='application/javascript', src='js/background/background.js')
+    -->
+    <script type="application/javascript" src="js/background/MainApp.js"></script>
+  </head>
+  <body ng-app="MainApp">
+    <md-tabs>
+      <md-tab>
+        <md-tab-label>
+          <h3>main</h3>
+        </md-tab-label>
+        <md-tab-body>
+          <row>
+            <div flex="">
+              <md-button>Show playlist</md-button>
+            </div>
+            <div flex="">
+              <md-button>Clear playlist</md-button>
+            </div>
+          </row>
+        </md-tab-body>
+      </md-tab>
+      <md-tab>
+        <md-tab-label>
+          <h3>settings</h3>
+        </md-tab-label>
+        <md-tab-body>Settings content</md-tab-body>
+      </md-tab>
+    </md-tabs>
+    <!--
+    br
+    #main.container-fluid
+        .row
+            .col-xs-3
+                button#addAllButton.btn.btn-default(type='button') Add all
+            .col-xs-3
+                button#showPlayListButton.btn.btn-default(type='button') Show playlist
+            .col-xs-3
+                button#clearPlayListButton.btn.btn-default(type='button') Clear playlist
+            .col-xs-3
+                button#settingsButton.btn.btn-default(type='button') Settings
+        br
+        .row
+            .col-xs-12
+                table#contentList.table.table-bordered
+    #settings.container
+        .form-group
+            label(for='rpcUrl') RPC url
+            input#rpcUrl.form-control(type='text', placeholder='Enter rpc url')
+        button#saveSettingsButton.btn.btn-default(type='button') Save
+    -->
+  </body>
 </html>

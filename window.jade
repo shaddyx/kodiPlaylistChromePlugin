@@ -1,0 +1,64 @@
+doctype html
+html(lang='en')
+    head
+        link(rel='stylesheet', href='css/main.css')
+        //
+            link(rel='stylesheet', href='css/bootstrap.min.css')
+        link(rel='stylesheet', href='js/shared/bower_components/angular-material/angular-material.css')
+        // Latest compiled and minified JavaScript
+        script(type='application/javascript', src='js/shared/bower_components/jquery/dist/jquery.js')
+        script(type='application/javascript', src='js/shared/bower_components/jquery.cookie/jquery.cookie.js')
+        script(type='application/javascript', src='js/shared/bower_components/angular/angular.js')
+        script(type='application/javascript', src='js/shared/bower_components/angular-aria/angular-aria.js')
+        script(type='application/javascript', src='js/shared/bower_components/angular-messages/angular-messages.js')
+        script(type='application/javascript', src='js/shared/bower_components/angular-material/angular-material.js')
+        script(type='application/javascript', src='js/shared/bower_components/angular-animate/angular-animate.js')
+        //  application
+        script(type='application/javascript', src='js/background/MainApp.js')
+        //
+            script(type='application/javascript', src='js/background/backgroundUtils.js')
+            script(type='application/javascript', src='js/background/RPC.js')
+            script(type='application/javascript', src='js/background/settings.js')
+            script(type='application/javascript', src='js/background/background.js')
+        script(type='application/javascript', src='js/background/MainApp.js')
+    body(ng-app="MainApp")
+        md-tabs
+            md-tab
+                md-tab-label
+                    h3 main
+                md-tab-body
+                    row
+                        div(flex="")
+                            md-button
+                                |Show playlist
+                        div(flex="")
+                            md-button
+                                | Clear playlist
+            md-tab
+                md-tab-label
+                    h3 settings
+                md-tab-body
+                    |Settings content
+
+
+        //
+            br
+            #main.container-fluid
+                .row
+                    .col-xs-3
+                        button#addAllButton.btn.btn-default(type='button') Add all
+                    .col-xs-3
+                        button#showPlayListButton.btn.btn-default(type='button') Show playlist
+                    .col-xs-3
+                        button#clearPlayListButton.btn.btn-default(type='button') Clear playlist
+                    .col-xs-3
+                        button#settingsButton.btn.btn-default(type='button') Settings
+                br
+                .row
+                    .col-xs-12
+                        table#contentList.table.table-bordered
+            #settings.container
+                .form-group
+                    label(for='rpcUrl') RPC url
+                    input#rpcUrl.form-control(type='text', placeholder='Enter rpc url')
+                button#saveSettingsButton.btn.btn-default(type='button') Save
