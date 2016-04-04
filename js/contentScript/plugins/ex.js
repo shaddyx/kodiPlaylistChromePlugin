@@ -17,5 +17,6 @@ ContentScriptUtils.addMessageListener("getItemList", function(){
             }
         }
     }
+    console.log("adding items:", playerItems);
     ContentScriptUtils.addPlayerItems(playerItems);
 });

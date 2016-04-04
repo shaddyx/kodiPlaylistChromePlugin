@@ -1,13 +1,13 @@
+mixin playListHeaderCell(title)
+    th
+        h3=title
 doctype html
 html(lang='en')
     head
         link(rel='stylesheet', href='css/main.css')
-        //
-            link(rel='stylesheet', href='css/bootstrap.min.css')
         link(rel='stylesheet', href='js/shared/bower_components/angular-material/angular-material.css')
         // Latest compiled and minified JavaScript
         script(type='application/javascript', src='js/shared/bower_components/jquery/dist/jquery.js')
-        script(type='application/javascript', src='js/shared/bower_components/jquery.cookie/jquery.cookie.js')
         script(type='application/javascript', src='js/shared/bower_components/angular/angular.js')
         script(type='application/javascript', src='js/shared/bower_components/angular-aria/angular-aria.js')
         script(type='application/javascript', src='js/shared/bower_components/angular-messages/angular-messages.js')
@@ -18,6 +18,8 @@ html(lang='en')
         script(type='application/javascript', src='js/background/service/RpcService.js')
         script(type='application/javascript', src='js/background/service/SettingsStorage.js')
         script(type='application/javascript', src='js/background/service/BackgroundService.js')
+        script(type='application/javascript', src='js/background/service/InfoResolver.js')
+        script(type='application/javascript', src='js/background/service/PlayList.js')
 
 
         //
@@ -25,7 +27,7 @@ html(lang='en')
         script(type='application/javascript', src='js/background/ctrl/PlayListController.js')
         script(type='application/javascript', src='js/background/ctrl/MainController.js')
     body(ng-app="MainApp")
-        md-tabs
+        md-tabs(md-dynamic-height="" md-border-bottom="")
             md-tab
                 md-tab-label
                     h3 main
@@ -33,10 +35,30 @@ html(lang='en')
                     div(ng-controller="PlayListController")
                         md-toolbar
                             div(layout="row")
+                                md-button.md-raised(ng-click="addChecked()")
+                                    | Add checked
                                 md-button.md-raised(ng-click="showPlayList()")
                                     |Show playlist
                                 md-button.md-raised(ng-click="clearPlayList()")
                                     |Clear playlist
+                                md-button.md-raised(ng-click="checkAll()")
+                                    | Check all
+                                md-button.md-raised(ng-click="unCheckAll()")
+                                    | Uncheck all
+                        div
+                            table.playlistTable
+                                tr
+                                    +playListHeaderCell("Name")
+                                    +playListHeaderCell("action")
+                                tr(ng-repeat="element in urlObjects")
+                                    td
+                                        |{{element.caption}}
+                                    td.action
+                                        md-checkbox(ng-model="element.checked")
+
+
+
+
             md-tab
                 md-tab-label
                     h3 settings
@@ -52,4 +74,4 @@ html(lang='en')
                             div(layout="row")
                                 md-input-container(flex="")
                                     label URL:
-                                    input(ng-model="url",required="")
+                                    input(ng-model="url",required="",ng-placeholder="http://192.168.1.101/")

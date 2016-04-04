@@ -14,7 +14,7 @@ mainApp.service("SettingsStorage", [function(){
      * returns url
      * @returns {string}
      */
-    this.getURL = function(){
+    this.getUrl = function(){
         return settings.url;
     };
     this.setUrl = function(urlToSet){

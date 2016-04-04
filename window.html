@@ -2,12 +2,9 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="css/main.css">
-    <!--link(rel='stylesheet', href='css/bootstrap.min.css')
-    -->
     <link rel="stylesheet" href="js/shared/bower_components/angular-material/angular-material.css">
     <!-- Latest compiled and minified JavaScript-->
     <script type="application/javascript" src="js/shared/bower_components/jquery/dist/jquery.js"></script>
-    <script type="application/javascript" src="js/shared/bower_components/jquery.cookie/jquery.cookie.js"></script>
     <script type="application/javascript" src="js/shared/bower_components/angular/angular.js"></script>
     <script type="application/javascript" src="js/shared/bower_components/angular-aria/angular-aria.js"></script>
     <script type="application/javascript" src="js/shared/bower_components/angular-messages/angular-messages.js"></script>
@@ -18,13 +15,15 @@
     <script type="application/javascript" src="js/background/service/RpcService.js"></script>
     <script type="application/javascript" src="js/background/service/SettingsStorage.js"></script>
     <script type="application/javascript" src="js/background/service/BackgroundService.js"></script>
+    <script type="application/javascript" src="js/background/service/InfoResolver.js"></script>
+    <script type="application/javascript" src="js/background/service/PlayList.js"></script>
     <!---->
     <script type="application/javascript" src="js/background/ctrl/SettingsController.js"></script>
     <script type="application/javascript" src="js/background/ctrl/PlayListController.js"></script>
     <script type="application/javascript" src="js/background/ctrl/MainController.js"></script>
   </head>
   <body ng-app="MainApp">
-    <md-tabs>
+    <md-tabs md-dynamic-height="" md-border-bottom="">
       <md-tab>
         <md-tab-label>
           <h3>main</h3>
@@ -33,10 +32,31 @@
           <div ng-controller="PlayListController">
             <md-toolbar>
               <div layout="row">
+                <md-button ng-click="addChecked()" class="md-raised">Add checked</md-button>
                 <md-button ng-click="showPlayList()" class="md-raised">Show playlist</md-button>
                 <md-button ng-click="clearPlayList()" class="md-raised">Clear playlist</md-button>
+                <md-button ng-click="checkAll()" class="md-raised">Check all</md-button>
+                <md-button ng-click="unCheckAll()" class="md-raised">Uncheck all</md-button>
               </div>
             </md-toolbar>
+            <div>
+              <table class="playlistTable">
+                <tr>
+                  <th>
+                    <h3>Name</h3>
+                  </th>
+                  <th>
+                    <h3>action</h3>
+                  </th>
+                </tr>
+                <tr ng-repeat="element in urlObjects">
+                  <td>{{element.caption}}</td>
+                  <td class="action">
+                    <md-checkbox ng-model="element.checked"></md-checkbox>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
         </md-tab-body>
       </md-tab>
@@ -56,7 +76,7 @@
               <div layout="row">
                 <md-input-container flex="">
                   <label>URL:</label>
-                  <input ng-model="url" required="">
+                  <input ng-model="url" required="" ng-placeholder="http://192.168.1.101/">
                 </md-input-container>
               </div>
             </form>

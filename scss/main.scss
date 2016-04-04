@@ -4,6 +4,14 @@ body{
   overflow: auto;
 }
 
-#settings{
-  display:none;
+.playlistTable{
+  width:100%
+}
+
+.playlistTable th{
+  background-color: #8c8c8c;
+}
+
+.playlistTable td.action{
+  text-align: center;
 }
