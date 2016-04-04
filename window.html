@@ -15,13 +15,13 @@
     <script type="application/javascript" src="js/shared/bower_components/angular-animate/angular-animate.js"></script>
     <!--  application-->
     <script type="application/javascript" src="js/background/MainApp.js"></script>
-    <!--
-    script(type='application/javascript', src='js/background/backgroundUtils.js')
-    script(type='application/javascript', src='js/background/RPC.js')
-    script(type='application/javascript', src='js/background/settings.js')
-    script(type='application/javascript', src='js/background/background.js')
-    -->
-    <script type="application/javascript" src="js/background/MainApp.js"></script>
+    <script type="application/javascript" src="js/background/service/RpcService.js"></script>
+    <script type="application/javascript" src="js/background/service/SettingsStorage.js"></script>
+    <script type="application/javascript" src="js/background/service/BackgroundService.js"></script>
+    <!---->
+    <script type="application/javascript" src="js/background/ctrl/SettingsController.js"></script>
+    <script type="application/javascript" src="js/background/ctrl/PlayListController.js"></script>
+    <script type="application/javascript" src="js/background/ctrl/MainController.js"></script>
   </head>
   <body ng-app="MainApp">
     <md-tabs>
@@ -30,44 +30,39 @@
           <h3>main</h3>
         </md-tab-label>
         <md-tab-body>
-          <row>
-            <div flex="">
-              <md-button>Show playlist</md-button>
-            </div>
-            <div flex="">
-              <md-button>Clear playlist</md-button>
-            </div>
-          </row>
+          <div ng-controller="PlayListController">
+            <md-toolbar>
+              <div layout="row">
+                <md-button ng-click="showPlayList()" class="md-raised">Show playlist</md-button>
+                <md-button ng-click="clearPlayList()" class="md-raised">Clear playlist</md-button>
+              </div>
+            </md-toolbar>
+          </div>
         </md-tab-body>
       </md-tab>
       <md-tab>
         <md-tab-label>
           <h3>settings</h3>
         </md-tab-label>
-        <md-tab-body>Settings content</md-tab-body>
+        <md-tab-body>
+          <div ng-controller="SettingsController">
+            <md-toolbar>
+              <div layout="row">
+                <md-button ng-click="save()" class="md-raised">Save</md-button>
+                <md-button ng-click="cancel()" class="md-raised">Cancel</md-button>
+              </div>
+            </md-toolbar>
+            <form name="settingsForm" ng-submit="save()">
+              <div layout="row">
+                <md-input-container flex="">
+                  <label>URL:</label>
+                  <input ng-model="url" required="">
+                </md-input-container>
+              </div>
+            </form>
+          </div>
+        </md-tab-body>
       </md-tab>
     </md-tabs>
-    <!--
-    br
-    #main.container-fluid
-        .row
-            .col-xs-3
-                button#addAllButton.btn.btn-default(type='button') Add all
-            .col-xs-3
-                button#showPlayListButton.btn.btn-default(type='button') Show playlist
-            .col-xs-3
-                button#clearPlayListButton.btn.btn-default(type='button') Clear playlist
-            .col-xs-3
-                button#settingsButton.btn.btn-default(type='button') Settings
-        br
-        .row
-            .col-xs-12
-                table#contentList.table.table-bordered
-    #settings.container
-        .form-group
-            label(for='rpcUrl') RPC url
-            input#rpcUrl.form-control(type='text', placeholder='Enter rpc url')
-        button#saveSettingsButton.btn.btn-default(type='button') Save
-    -->
   </body>
 </html>

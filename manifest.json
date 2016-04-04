@@ -1,7 +1,7 @@
 {
-  "name" : "xbmc playlist adder",
-  "version" : "1.0.4",
-  "description" : "The extension to add urls to xbmc",
+  "name": "xbmc playlist adder",
+  "version": "1.0.4",
+  "description": "The extension to add urls to xbmc",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": "playlist.png",
@@ -17,29 +17,44 @@
     "tabs",
     "http://*/*"
   ],
-  "content_scripts": [{
-    "matches" : [
-      "http://*/*",
-      "https://*/*"
-    ],
-    "js" : ["js/shared/jquery.js", "js/contentScript/contentScriptUtils.js", "js/contentScript/main.js"]
-  }, {
-      "matches" : [
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "js/shared/jquery.js",
+        "js/contentScript/contentScriptUtils.js",
+        "js/contentScript/main.js"
+      ]
+    },
+    {
+      "matches": [
         "http://ex.ua/*",
         "http://www.ex.ua/*"
       ],
-      "js" : ["js/contentScript/plugins/ex.js"]
-    },{
-    "matches" : [
-      "http://fs.to/*",
-      "http://www.fs.to/*"
-    ],
-    "js" : ["js/contentScript/plugins/fs.js"]
-    },{
-    "matches" : [
-      "https://vk.com/*",
-      "https://www.vk.com/*"
-    ],
-    "js" : ["js/contentScript/plugins/vk.js"]
-  }]
+      "js": [
+        "js/contentScript/plugins/ex.js"
+      ]
+    },
+    {
+      "matches": [
+        "http://fs.to/*",
+        "http://www.fs.to/*"
+      ],
+      "js": [
+        "js/contentScript/plugins/fs.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://vk.com/*",
+        "https://www.vk.com/*"
+      ],
+      "js": [
+        "js/contentScript/plugins/vk.js"
+      ]
+    }
+  ]
 }

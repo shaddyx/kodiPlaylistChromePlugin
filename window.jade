@@ -15,50 +15,41 @@ html(lang='en')
         script(type='application/javascript', src='js/shared/bower_components/angular-animate/angular-animate.js')
         //  application
         script(type='application/javascript', src='js/background/MainApp.js')
+        script(type='application/javascript', src='js/background/service/RpcService.js')
+        script(type='application/javascript', src='js/background/service/SettingsStorage.js')
+        script(type='application/javascript', src='js/background/service/BackgroundService.js')
+
+
         //
-            script(type='application/javascript', src='js/background/backgroundUtils.js')
-            script(type='application/javascript', src='js/background/RPC.js')
-            script(type='application/javascript', src='js/background/settings.js')
-            script(type='application/javascript', src='js/background/background.js')
-        script(type='application/javascript', src='js/background/MainApp.js')
+        script(type='application/javascript', src='js/background/ctrl/SettingsController.js')
+        script(type='application/javascript', src='js/background/ctrl/PlayListController.js')
+        script(type='application/javascript', src='js/background/ctrl/MainController.js')
     body(ng-app="MainApp")
         md-tabs
             md-tab
                 md-tab-label
                     h3 main
                 md-tab-body
-                    row
-                        div(flex="")
-                            md-button
-                                |Show playlist
-                        div(flex="")
-                            md-button
-                                | Clear playlist
+                    div(ng-controller="PlayListController")
+                        md-toolbar
+                            div(layout="row")
+                                md-button.md-raised(ng-click="showPlayList()")
+                                    |Show playlist
+                                md-button.md-raised(ng-click="clearPlayList()")
+                                    |Clear playlist
             md-tab
                 md-tab-label
                     h3 settings
                 md-tab-body
-                    |Settings content
-
-
-        //
-            br
-            #main.container-fluid
-                .row
-                    .col-xs-3
-                        button#addAllButton.btn.btn-default(type='button') Add all
-                    .col-xs-3
-                        button#showPlayListButton.btn.btn-default(type='button') Show playlist
-                    .col-xs-3
-                        button#clearPlayListButton.btn.btn-default(type='button') Clear playlist
-                    .col-xs-3
-                        button#settingsButton.btn.btn-default(type='button') Settings
-                br
-                .row
-                    .col-xs-12
-                        table#contentList.table.table-bordered
-            #settings.container
-                .form-group
-                    label(for='rpcUrl') RPC url
-                    input#rpcUrl.form-control(type='text', placeholder='Enter rpc url')
-                button#saveSettingsButton.btn.btn-default(type='button') Save
+                    div(ng-controller="SettingsController")
+                        md-toolbar
+                            div(layout="row")
+                                md-button.md-raised(ng-click="save()")
+                                    |Save
+                                md-button.md-raised(ng-click="cancel()")
+                                    |Cancel
+                        form(name="settingsForm", ng-submit="save()")
+                            div(layout="row")
+                                md-input-container(flex="")
+                                    label URL:
+                                    input(ng-model="url",required="")
