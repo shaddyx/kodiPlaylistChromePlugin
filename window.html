@@ -31,7 +31,7 @@
         <md-tab-body>
           <div ng-controller="PlayListController">
             <md-toolbar>
-              <div layout="row">
+              <div layout="row" ng-disabled="!working">
                 <md-button ng-click="addChecked()" class="md-raised">Add checked</md-button>
                 <md-button ng-click="showPlayList()" class="md-raised">Show playlist</md-button>
                 <md-button ng-click="clearPlayList()" class="md-raised">Clear playlist</md-button>

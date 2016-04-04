@@ -4,12 +4,19 @@
 mainApp.controller("PlayListController", ["$scope", "BackgroundService", "InfoResolver", "PlayList", function($scope, BackgroundService, InfoResolver, PlayList){
     /** @type {MaterialObject[]} */
     $scope.urlObjects = [];
+    $scope.working = false;
     $scope.showPlayList = function(){
-        PlayList.show();
+        $scope.working = true;
+        PlayList.show().finally(function(){
+            $scope.working = false;
+        });
     };
 
     $scope.clearPlayList = function(){
-        PlayList.clear();
+        $scope.working = true;
+        PlayList.clear().finally(function(){
+            $scope.working = false;
+        });
     };
     $scope.checkAll = function(){
         for (var k in $scope.urlObjects){
@@ -28,6 +35,7 @@ mainApp.controller("PlayListController", ["$scope", "BackgroundService", "InfoRe
                 results.push($scope.urlObjects[k]);
             }
         }
+        $scope.working = true;
         PlayList.show()
             .then(function(){
                 return PlayList.addAll(results)
@@ -36,7 +44,7 @@ mainApp.controller("PlayListController", ["$scope", "BackgroundService", "InfoRe
                 return PlayList.show();
             })
             .finally(function(){
-
+                $scope.working = false;
             })
     };
     BackgroundService.addMessageListener("addPlayerItems", function(urlObjects){

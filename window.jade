@@ -34,7 +34,7 @@ html(lang='en')
                 md-tab-body
                     div(ng-controller="PlayListController")
                         md-toolbar
-                            div(layout="row")
+                            div(layout="row", ng-disabled="working")
                                 md-button.md-raised(ng-click="addChecked()")
                                     | Add checked
                                 md-button.md-raised(ng-click="showPlayList()")
