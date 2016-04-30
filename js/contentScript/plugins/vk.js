@@ -14,10 +14,10 @@ ContentScriptUtils.addMessageListener("getItemList", function(){
         var res;
         var items = [];
         while (res = re.exec(varsStr)){
-            var url = res[2];
+            var url = decodeURIComponent(res[2]);
             var title = "Vk video (" + res[1] +")";
             var item = new PlayerItem(title, url);
-            console.log("adding item", item);
+            console.log("adding itemm", item);
             items.push(item);
         }
         ContentScriptUtils.addPlayerItems(items);
