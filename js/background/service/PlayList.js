@@ -33,11 +33,19 @@ mainApp.service("PlayList", ["InfoResolver", "$q", "RpcService", function(InfoRe
      * @returns {Promise}
      */
     this.addAll = function (list){
-        var results = [];
+        var result = false;
         for (var k in list){
-            results.push(this.add(list[k]));
+            if (!result){
+                result = Q.fcall(function(){
+                    return this.add(list[k]);
+                });
+            } else {
+                result = result.then(function(){
+                    return this.add(list[k]);
+                });
+            }
         }
-        return $q.all(results);
+        return result;
     };
     this.show = function(){
         return RpcService.call("GUI.ActivateWindow", {
