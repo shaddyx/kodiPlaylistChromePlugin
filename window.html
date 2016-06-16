@@ -17,6 +17,7 @@
     <script type="application/javascript" src="js/background/service/BackgroundService.js"></script>
     <script type="application/javascript" src="js/background/service/InfoResolver.js"></script>
     <script type="application/javascript" src="js/background/service/PlayList.js"></script>
+    <script type="application/javascript" src="js/background/service/Kodi.js"></script>
     <!---->
     <script type="application/javascript" src="js/background/ctrl/SettingsController.js"></script>
     <script type="application/javascript" src="js/background/ctrl/PlayListController.js"></script>
@@ -72,6 +73,8 @@
                 <md-button ng-click="cancel()" class="md-raised">Cancel</md-button>
               </div>
             </md-toolbar>
+            <div ng-show="connected" class="ok">Connected</div>
+            <div ng-show="!connected" class="error">Not connected</div>
             <form name="settingsForm" ng-submit="save()">
               <div layout="row">
                 <md-input-container flex="">

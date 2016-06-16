@@ -20,6 +20,7 @@ html(lang='en')
         script(type='application/javascript', src='js/background/service/BackgroundService.js')
         script(type='application/javascript', src='js/background/service/InfoResolver.js')
         script(type='application/javascript', src='js/background/service/PlayList.js')
+        script(type='application/javascript', src='js/background/service/Kodi.js')
 
 
         //
@@ -70,6 +71,10 @@ html(lang='en')
                                     |Save
                                 md-button.md-raised(ng-click="cancel()")
                                     |Cancel
+                        .ok(ng-show="connected")
+                            | Connected
+                        .error(ng-show="!connected")
+                            | Not connected
                         form(name="settingsForm", ng-submit="save()")
                             div(layout="row")
                                 md-input-container(flex="")
