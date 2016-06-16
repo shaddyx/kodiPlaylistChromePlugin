@@ -2,6 +2,7 @@
  * Created by shaddy on 03.04.16.
  */
 mainApp.service("PlayList", ["InfoResolver", "$q", "RpcService", function(InfoResolver, $q, RpcService){
+    var my = this;
     /**
      *
      * @param item {MaterialObject}
@@ -35,15 +36,19 @@ mainApp.service("PlayList", ["InfoResolver", "$q", "RpcService", function(InfoRe
     this.addAll = function (list){
         var result = false;
         for (var k in list){
-            if (!result){
-                result = Q.fcall(function(){
-                    return this.add(list[k]);
-                });
-            } else {
-                result = result.then(function(){
-                    return this.add(list[k]);
-                });
-            }
+            (function(k){
+                if (!result){
+                    console.log("first:", list[k]);
+                    result = $q(function(resolve){
+                        return my.add(list[k]).then(resolve);
+                    });
+                } else {
+                    console.log("next:", list[k]);
+                    result = result.then(function(){
+                        return my.add(list[k]);
+                    });
+                }
+            })(k);
         }
         return result;
     };
